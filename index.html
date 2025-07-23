@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToBack - Empowering SMEs through energy stability</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a2b4a;
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 60px;
+            object-fit: contain;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(52, 168, 83, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: #ffffff;
+            border-radius: 30px;
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 3;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #1a2b4a;
+            margin-bottom: 1rem;
+        }
+
+        .form-section .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1a2b4a;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e8f0;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4285f4;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: #ffffff;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(66, 133, 244, 0.4);
+        }
+
+        /* Trust Elements */
+        .trust-section {
+            text-align: center;
+            padding: 2rem 0;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .trust-icon {
+            width: 20px;
+            height: 20px;
+            background: #34a853;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trust-icon::after {
+            content: '✓';
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .form-section {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-items {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Simulation Section */
+        .simulation-section {
+            background: #ffffff;
+            border-radius: 30px;
+            margin: 2rem auto;
+            max-width: 1000px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            display: none;
+        }
+
+        .simulation-section.show {
+            display: block;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .simulation-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .simulation-header h2 {
+            font-size: 2.5rem;
+            color: #1a2b4a;
+            margin-bottom: 1rem;
+        }
+
+        .company-name {
+            color: #4285f4;
+            font-weight: bold;
+        }
+
+        .simulation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .cost-card {
+            background: #f8fafc;
+            border: 2px solid #e1e8f0;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .cost-card.savings {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: #ffffff;
+            border-color: transparent;
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(66, 133, 244, 0.3);
+        }
+
+        .cost-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cost-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .cost-detail {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .savings-highlight {
+            background: #34a853;
+            color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .savings-highlight h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .protection-section {
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(52, 168, 83, 0.1));
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .protection-title {
+            font-size: 1.5rem;
+            color: #1a2b4a;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .protection-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .protection-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .protection-icon {
+            width: 30px;
+            height: 30px;
+            background: #4285f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .demo-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .demo-cta h3 {
+            font-size: 1.5rem;
+            color: #1a2b4a;
+            margin-bottom: 1rem;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: #ffffff;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(66, 133, 244, 0.4);
+        }
+
+        .back-button {
+            background: #e1e8f0;
+            color: #1a2b4a;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #d1d9e0;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content,
+        .form-section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .form-section {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+            <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="toback-logo.png" alt="ToBack Logo" class="logo-image">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Trasforma la tua energia in vantaggio competitivo</h1>
+                    <p>Scopri quanto la tua azienda può risparmiare con soluzioni energetiche intelligenti e sostenibili</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="form-section">
+                <h2>Calcola il tuo potenziale di risparmio</h2>
+                <p class="subtitle">Compila il form per ricevere una simulazione personalizzata dei tuoi risparmi energetici</p>
+                
+                <form id="energyForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="companyName">Nome dell'azienda *</label>
+                            <input type="text" id="companyName" name="companyName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">Regione *</label>
+                            <select id="region" name="region" required>
+                                <option value="">Seleziona la regione</option>
+                                <option value="Abruzzo">Abruzzo</option>
+                                <option value="Basilicata">Basilicata</option>
+                                <option value="Calabria">Calabria</option>
+                                <option value="Campania">Campania</option>
+                                <option value="Emilia-Romagna">Emilia-Romagna</option>
+                                <option value="Friuli-Venezia Giulia">Friuli-Venezia Giulia</option>
+                                <option value="Lazio">Lazio</option>
+                                <option value="Liguria">Liguria</option>
+                                <option value="Lombardia">Lombardia</option>
+                                <option value="Marche">Marche</option>
+                                <option value="Molise">Molise</option>
+                                <option value="Piemonte">Piemonte</option>
+                                <option value="Puglia">Puglia</option>
+                                <option value="Sardegna">Sardegna</option>
+                                <option value="Sicilia">Sicilia</option>
+                                <option value="Toscana">Toscana</option>
+                                <option value="Trentino-Alto Adige">Trentino-Alto Adige</option>
+                                <option value="Umbria">Umbria</option>
+                                <option value="Valle d'Aosta">Valle d'Aosta</option>
+                                <option value="Veneto">Veneto</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employees">Numero di dipendenti *</label>
+                            <select id="employees" name="employees" required>
+                                <option value="">Seleziona fascia</option>
+                                <option value="1-10">1-10 dipendenti</option>
+                                <option value="11-50">11-50 dipendenti</option>
+                                <option value="51-200">51-200 dipendenti</option>
+                                <option value="200+">Oltre 200 dipendenti</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="energyConsumption">Consumo energetico medio (kWh/mese) *</label>
+                            <input type="number" id="energyConsumption" name="energyConsumption" placeholder="es. 5000" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="email">Email aziendale *</label>
+                            <input type="email" id="email" name="email" placeholder="nome@azienda.com" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="cta-button">
+                        Richiedi Demo Personalizzata
+                    </button>
+                </form>
+            </section>
+        </div>
+
+        <!-- Sezione Simulazione -->
+        <div class="container">
+            <section class="simulation-section" id="simulationSection">
+                <button class="back-button" onclick="showForm()">← Torna al form</button>
+                
+                <div class="simulation-header">
+                    <h2>La tua simulazione personalizzata</h2>
+                    <p class="subtitle">Ecco quanto <span class="company-name" id="companyNameDisplay"></span> potrebbe risparmiare con l'assicurazione energetica ToBack</p>
+                </div>
+
+                <div class="simulation-grid">
+                    <div class="cost-card">
+                        <h3>💸 Costo Attuale</h3>
+                        <div class="cost-amount" id="currentCost">€ 0</div>
+                        <div class="cost-detail">Con prezzi volatili del mercato</div>
+                    </div>
+
+                    <div class="cost-card savings">
+                        <h3>🛡️ Con ToBack</h3>
+                        <div class="cost-amount" id="tobackCost">€ 0</div>
+                        <div class="cost-detail">Prezzo fisso garantito</div>
+                    </div>
+                </div>
+
+                <div class="savings-highlight">
+                    <h3>🎯 Il tuo risparmio annuale</h3>
+                    <div class="savings-amount" id="totalSavings">€ 0</div>
+                    <div>Protetto dalle fluttuazioni del mercato energetico</div>
+                </div>
+
+                <div class="protection-section">
+                    <h3 class="protection-title">🔒 Cosa include l'assicurazione ToBack</h3>
+                    <div class="protection-items">
+                        <div class="protection-item">
+                            <div class="protection-icon">📈</div>
+                            <span>Prezzo fisso per 12 mesi</span>
+                        </div>
+                        <div class="protection-item">
+                            <div class="protection-icon">🛡️</div>
+                            <span>Protezione da rincari</span>
+                        </div>
+                        <div class="protection-item">
+                            <div class="protection-icon">📊</div>
+                            <span>Budget prevedibile</span>
+                        </div>
+                        <div class="protection-item">
+                            <div class="protection-icon">⚡</div>
+                            <span>Stessa qualità energetica</span>
+                        </div>
+                        <div class="protection-item">
+                            <div class="protection-icon">🏢</div>
+                            <span>Soluzione su misura per SME</span>
+                        </div>
+                        <div class="protection-item">
+                            <div class="protection-icon">📞</div>
+                            <span>Supporto dedicato 24/7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-cta">
+                    <h3>Interessato? Prenota la tua demo gratuita</h3>
+                    <p style="margin-bottom: 1.5rem; color: #666;">Un nostro esperto ti mostrerà come implementare la soluzione nella tua azienda</p>
+                    <a href="#" class="demo-button" onclick="bookDemo()">📅 Prenota Demo Gratuita</a>
+                </div>
+            </section>
+        </div>
+
+        <section class="trust-section">
+            <div class="container">
+                <p>Unisciti alle aziende che hanno già scelto la stabilità energetica</p>
+                <div class="trust-items">
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>Analisi gratuita</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>Soluzioni su misura</span>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon"></div>
+                        <span>Supporto dedicato</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ⚙️ CONFIGURAZIONE BACKEND
+        const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwIOk0y9JwsYbXbaO9ZdlPT-8XBvjUj4yww-CJccJnJW2jMNMEoDDcm0pzrrbIBjwI/exec';
+        
+        // Prezzi energetici realistici per l'Italia (€/kWh)
+        const MARKET_PRICE = 0.28; // Prezzo medio volatile del mercato
+        const TOBACK_PRICE = 0.22; // Prezzo fisso garantito da ToBack
+        
+        document.getElementById('energyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Raccolta dati form
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Dati raccolti:', data);
+            
+            // Feedback visivo
+            const button = document.querySelector('.cta-button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Calcolo in corso...';
+            button.disabled = true;
+
+            // 🚀 INVIO DATI AL BACKEND (Apps Script)
+            fetch(WEBAPP_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('✅ Dati salvati con successo:', result);
+                // Puoi aggiungere qui una notifica di successo se desideri
+            })
+            .catch(error => {
+                console.error('❌ Errore salvataggio dati:', error);
+                // Il form continua a funzionare anche se il backend fallisce
+            });
+            
+            // Simula processing e poi mostra simulazione
+            setTimeout(() => {
+                showSimulation(data);
+            }, 1500);
+        });
+
+        function showSimulation(data) {
+            // Nascondi form e mostra simulazione
+            document.querySelector('.form-section').style.display = 'none';
+            document.querySelector('.hero').style.display = 'none';
+            
+            const simulationSection = document.getElementById('simulationSection');
+            simulationSection.classList.add('show');
+            
+            // Popola i dati della simulazione
+            populateSimulation(data);
+            
+            // Scroll alla simulazione
+            simulationSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function populateSimulation(data) {
+            const monthlyKwh = parseInt(data.energyConsumption);
+            const annualKwh = monthlyKwh * 12;
+            
+            // Calcoli dei costi
+            const currentAnnualCost = annualKwh * MARKET_PRICE;
+            const tobackAnnualCost = annualKwh * TOBACK_PRICE;
+            const annualSavings = currentAnnualCost - tobackAnnualCost;
+            
+            // Aggiustamenti basati sulla dimensione dell'azienda
+            let savingsMultiplier = 1;
+            switch(data.employees) {
+                case '11-50': savingsMultiplier = 1.1; break;
+                case '51-200': savingsMultiplier = 1.2; break;
+                case '200+': savingsMultiplier = 1.3; break;
+            }
+            
+            const finalSavings = annualSavings * savingsMultiplier;
+            
+            // Popola i valori nell'interfaccia
+            document.getElementById('companyNameDisplay').textContent = data.companyName;
+            document.getElementById('currentCost').textContent = `€ ${Math.round(currentAnnualCost).toLocaleString()}`;
+            document.getElementById('tobackCost').textContent = `€ ${Math.round(tobackAnnualCost).toLocaleString()}`;
+            document.getElementById('totalSavings').textContent = `€ ${Math.round(finalSavings).toLocaleString()}`;
+            
+            // Animazione contatori
+            animateCounters();
+        }
+
+        function animateCounters() {
+            const counters = document.querySelectorAll('.cost-amount, .savings-amount');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[€\s,]/g, ''));
+                const duration = 2000;
+                const steps = 60;
+                const increment = target / steps;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (counter.classList.contains('savings-amount')) {
+                        counter.textContent = `€ ${Math.round(current).toLocaleString()}`;
+                    } else {
+                        counter.textContent = `€ ${Math.round(current).toLocaleString()}`;
+                    }
+                }, duration / steps);
+            });
+        }
+
+        function showForm() {
+            // Mostra form e nascondi simulazione
+            document.querySelector('.form-section').style.display = 'block';
+            document.querySelector('.hero').style.display = 'block';
+            document.getElementById('simulationSection').classList.remove('show');
+            
+            // Reset form
+            const button = document.querySelector('.cta-button');
+            button.textContent = 'Richiedi Demo Personalizzata';
+            button.disabled = false;
+            document.getElementById('energyForm').reset();
+            
+            // Scroll al form
+            document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function bookDemo() {
+            alert('Perfetto! Ti contatteremo entro 24 ore per programmare la demo.\n\nGrazie per aver scelto ToBack! 🚀');
+            
+            // Qui integrare con calendario/CRM
+            // Esempio: reindirizzamento a Calendly
+            // window.open('https://calendly.com/toback/demo', '_blank');
+        }
+
+        // Animazioni scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Osserva elementi per animazioni
+        document.querySelectorAll('.form-section, .trust-section, .simulation-section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
