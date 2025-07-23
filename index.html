@@ -647,6 +647,9 @@
     </main>
 
     <script>
+        // ⚙️ CONFIGURAZIONE BACKEND
+        const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwIOk0y9JwsYbXbaO9ZdlPT-8XBvjUj4yww-CJccJnJW2jMNMEoDDcm0pzrrbIBjwI/exec';
+        
         // Prezzi energetici realistici per l'Italia (€/kWh)
         const MARKET_PRICE = 0.28; // Prezzo medio volatile del mercato
         const TOBACK_PRICE = 0.22; // Prezzo fisso garantito da ToBack
@@ -666,6 +669,24 @@
             
             button.textContent = 'Calcolo in corso...';
             button.disabled = true;
+
+            // 🚀 INVIO DATI AL BACKEND (Apps Script)
+            fetch(WEBAPP_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('✅ Dati salvati con successo:', result);
+                // Puoi aggiungere qui una notifica di successo se desideri
+            })
+            .catch(error => {
+                console.error('❌ Errore salvataggio dati:', error);
+                // Il form continua a funzionare anche se il backend fallisce
+            });
             
             // Simula processing e poi mostra simulazione
             setTimeout(() => {
